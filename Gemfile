@@ -44,4 +44,6 @@ group :development, :test do
 end
 
 gem "devise"
+gem "forem", :github => "radar/forem", :branch => "rails4"
+gem "kaminari"
 
