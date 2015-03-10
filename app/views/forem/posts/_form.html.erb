@@ -1,5 +1,10 @@
 <%= f.input :text, :input_html => { :class => "field col-md-12" } %>
 
+<h4>Upload photo or video</h4>
+<%= f.simple_fields_for :photos do |photo| %>
+  <%= render :partial => "photos/form", :locals => { :f => photo }%>
+<% end %>
+
 <% if params[:reply_to_id] %>
   <%= f.hidden_field :reply_to_id, :value => params[:reply_to_id] %>
 <% end %>
