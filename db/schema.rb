@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150310031935) do
+ActiveRecord::Schema.define(version: 20150310044000) do
 
   create_table "forem_categories", force: :cascade do |t|
     t.string   "name",                   null: false
@@ -109,6 +109,17 @@ ActiveRecord::Schema.define(version: 20150310031935) do
   add_index "forem_views", ["updated_at"], name: "index_forem_views_on_updated_at"
   add_index "forem_views", ["user_id"], name: "index_forem_views_on_user_id"
   add_index "forem_views", ["viewable_id"], name: "index_forem_views_on_viewable_id"
+
+  create_table "photos", force: :cascade do |t|
+    t.integer  "post_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.boolean  "attachment_is_animated"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",               null: false
