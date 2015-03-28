@@ -34,15 +34,24 @@
         </a>
         <%= forem_format(post.text) %>
 
-        <div class="photos">
-          <% for photo in post.photos %>
-            <% if photo.attachment_is_animated %>
-              <%= video_tag photo.attachment_url(:medium) %>
-            <% else %>
-              <%= image_tag photo.attachment_url(:medium) %>
-            <% end %>
-          <% end %>
-        </div>
+<!-- HERE HERE -->
+
+<div class="photos">
+  <% for photo in post.photos %>
+    <% if photo.attachment_is_animated %>
+      <% if photo.attachment_is_processing %>
+        <p class="processing">Please wait while we process your video...</p>
+      <% else %>
+        <%= video_tag photo.attachment_url(:medium) %>
+      <% end %>
+    <% else %>
+      <%= image_tag photo.attachment_url(:medium) %>
+    <% end %>
+  <% end %>
+</div>
+
+
+
 
         <% if post.reply_to %>
           <div class='in-reply-to'>

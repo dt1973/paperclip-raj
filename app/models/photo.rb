@@ -8,6 +8,15 @@ class Photo < ActiveRecord::Base
   before_post_process :setup_styles
   before_save :set_attachment_is_animated
 
+  # START DELAYED PAPERCLIP
+
+  before_post_process :set_attachment_is_processing
+  after_post_process :set_attachment_is_processing
+
+  process_in_background :attachment, only_process: [:medium_animated], url_with_processing: false
+
+  # END DELAYED PAPERCLIP
+
   validates_attachment :attachment, presence: true, content_type: {content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif", "video/mp4"]}
 
   def attachment_url(style = :medium)
@@ -48,6 +57,10 @@ class Photo < ActiveRecord::Base
 
   def set_attachment_is_animated
     self.attachment_is_animated = true if is_animated_gif?
+  end
+
+  def set_attachment_is_processing
+    self.attachment_is_processing = true if processing?
   end
 end
 

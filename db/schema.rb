@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150310044000) do
+ActiveRecord::Schema.define(version: 20150328081830) do
 
   create_table "forem_categories", force: :cascade do |t|
     t.string   "name",                   null: false
@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(version: 20150310044000) do
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
     t.boolean  "attachment_is_animated"
+    t.boolean  "attachment_is_processing", default: false
   end
 
   create_table "users", force: :cascade do |t|
