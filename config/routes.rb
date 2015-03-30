@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   root :to => "forums#index"
 
   devise_for :users
+
+  get '/check_photo_processing/:id', to: 'photos#check_photo_processing', as: :check_photo_processing
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

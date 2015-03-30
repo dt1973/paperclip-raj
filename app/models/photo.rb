@@ -60,7 +60,7 @@ class Photo < ActiveRecord::Base
   end
 
   def set_attachment_is_processing
-    self.attachment_is_processing = true if processing?
+    self.attachment_is_processing = true if attachment.processing?
   end
 end
 

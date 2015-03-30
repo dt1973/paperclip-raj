@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(version: 20150328081830) do
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
-    t.boolean  "attachment_is_animated"
+    t.boolean  "attachment_is_animated",   default: false
     t.boolean  "attachment_is_processing", default: false
   end
 

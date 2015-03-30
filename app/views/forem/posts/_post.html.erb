@@ -41,6 +41,11 @@
     <% if photo.attachment_is_animated %>
       <% if photo.attachment_is_processing %>
         <p class="processing">Please wait while we process your video...</p>
+
+        <script>
+          $.mediaPoller.request(photo.id);
+          // or pass in the photo id somehow
+        </script>
       <% else %>
         <%= video_tag photo.attachment_url(:medium) %>
       <% end %>

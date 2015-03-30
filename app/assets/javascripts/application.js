@@ -15,3 +15,45 @@
 //= require turbolinks
 //= require forem
 //= require_tree .
+
+$.mediaPoller = {
+  poll: function() {
+    console.log('Ran `poll`');
+
+    setTimeout(this.request, 5000);
+  },
+  request: function(photo_id) {
+    console.log('Ran `request`');
+
+    $.ajax({
+      url: "/check_photo_status/#{ photo_id }.js"
+      type: "GET",
+      success: function(html, textStatus, xhr){
+        $.mediaPoller.addMedia(html);
+      },
+      error: function(xhr, textStatus, errorThrown) {
+        console.log(textStatus, errorThrown);
+
+        // Start again
+
+        $.mediaPoller.poll();
+      }
+    });
+  },
+  addMedia: function(html) {
+    console.log('Ran `addMedia`');
+
+    $(html).prependTo($('.photos'));
+
+    console.log('New media was added');
+  }
+};
+
+$(function() {
+  if($('.photos .processing').length) {
+    console.log('Ran `poll`');
+
+    $.mediaPoller.poll();
+  }
+});
+

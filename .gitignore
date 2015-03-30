@@ -15,4 +15,5 @@
 /log/*
 !/log/.keep
 /tmp
-vendor/bundle
+/public/system
+/vendor/bundle
