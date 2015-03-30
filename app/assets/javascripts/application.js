@@ -26,7 +26,7 @@ $.mediaPoller = {
     console.log('Ran `request`');
 
     $.ajax({
-      url: "/check_photo_status/#{ photo_id }.js"
+      url: "/check_photo_status/#{ photo_id }.js",
       type: "GET",
       success: function(html, textStatus, xhr){
         $.mediaPoller.addMedia(html);
