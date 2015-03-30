@@ -43,7 +43,7 @@
         <p class="processing">Please wait while we process your video...</p>
 
         <script>
-          $.mediaPoller.request(photo.id);
+          $.mediaPoller.request(<%= photo.id %>);
           // or pass in the photo id somehow
         </script>
       <% else %>
