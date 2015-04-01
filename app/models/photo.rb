@@ -13,7 +13,8 @@ class Photo < ActiveRecord::Base
   before_post_process :set_attachment_is_processing
   after_post_process :set_attachment_is_processing
 
-  process_in_background :attachment, only_process: [:medium_animated], url_with_processing: false
+  process_in_background :attachment
+  # process_in_background :attachment, only_process: [:medium_animated], url_with_processing: false
 
   # END DELAYED PAPERCLIP
 
