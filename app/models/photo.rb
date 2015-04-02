@@ -16,6 +16,12 @@ class Photo < ActiveRecord::Base
   process_in_background :attachment
   # process_in_background :attachment, only_process: [:medium_animated], url_with_processing: false
 
+  # Override `attr_accessor` to makes `styles` available to DelayedJob
+
+  def applicable_styles
+    @applicable_styles || setup_styles
+  end
+
   # END DELAYED PAPERCLIP
 
   validates_attachment :attachment, presence: true, content_type: {content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif", "video/mp4"]}
@@ -26,8 +32,12 @@ class Photo < ActiveRecord::Base
     attachment.url(style)
   end
 
+def applicable_styles
+  @applicable_styles || setup_styles
+end
+
   def setup_styles
-    @applicable_styles ||= {}
+    @applicable_styles ||= { }
 
     if is_animated_gif?
       @applicable_styles[:medium_animated] = {
