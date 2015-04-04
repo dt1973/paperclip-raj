@@ -14,7 +14,6 @@ class Photo < ActiveRecord::Base
   after_post_process :set_attachment_is_processing
 
   process_in_background :attachment
-  # process_in_background :attachment, only_process: [:medium_animated], url_with_processing: false
 
   # Override `attr_accessor` to makes `styles` available to DelayedJob
 
@@ -31,10 +30,6 @@ class Photo < ActiveRecord::Base
     style = is_animated_gif? ? "#{style.to_s}_animated".to_sym : style
     attachment.url(style)
   end
-
-def applicable_styles
-  @applicable_styles || setup_styles
-end
 
   def setup_styles
     @applicable_styles ||= { }

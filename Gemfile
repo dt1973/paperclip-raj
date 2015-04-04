@@ -51,4 +51,4 @@ gem "paperclip-ffmpeg"
 gem "rmagick"
 gem "delayed_job_active_record"
 gem "delayed_paperclip"
-
+gem "daemons"
